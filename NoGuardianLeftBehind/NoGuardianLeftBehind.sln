@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoGuardianLeftBehind", "NoGuardianLeftBehind\NoGuardianLeftBehind.csproj", "{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business2\Business.csproj", "{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{5965BFF4-26E4-4D5E-A9A4-45730FA61E9B}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://destinygroupfinder.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Business2\\Business.csproj
+		SccProjectName1 = Business2
+		SccLocalPath1 = Business2
+		SccProjectUniqueName2 = NoGuardianLeftBehind\\NoGuardianLeftBehind.csproj
+		SccProjectName2 = NoGuardianLeftBehind
+		SccLocalPath2 = NoGuardianLeftBehind
+		SccProjectUniqueName3 = Data\\Data.csproj
+		SccProjectName3 = Data
+		SccLocalPath3 = Data
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Debug|x64.ActiveCfg = Debug|x64
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Debug|x64.Build.0 = Debug|x64
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Release|x64.ActiveCfg = Release|Any CPU
+		{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}.Release|x64.Build.0 = Release|Any CPU
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Debug|x64.ActiveCfg = Debug|x64
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Debug|x64.Build.0 = Debug|x64
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Release|x64.ActiveCfg = Release|Any CPU
+		{53C4C374-06B2-468D-9B3B-0BCEE72BB3C7}.Release|x64.Build.0 = Release|Any CPU
+		{5965BFF4-26E4-4D5E-A9A4-45730FA61E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5965BFF4-26E4-4D5E-A9A4-45730FA61E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5965BFF4-26E4-4D5E-A9A4-45730FA61E9B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5965BFF4-26E4-4D5E-A9A4-45730FA61E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5965BFF4-26E4-4D5E-A9A4-45730FA61E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5965BFF4-26E4-4D5E-A9A4-45730FA61E9B}.Release|x64.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

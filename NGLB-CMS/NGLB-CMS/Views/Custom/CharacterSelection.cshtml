@@ -1,0 +1,203 @@
+﻿@using NGLBCMS.Models
+@inherits UmbracoViewPage<NGLB_CMS.Models.GetCharactersModel>
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+
+<style type="text/css">
+        pre {
+            white-space: normal;
+        word-wrap: normal;
+            -moz-word-break: normal;
+            -o-word-break: normal;
+            word-break: normal;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        font-family: "Merriweather",serif;
+        }
+
+        #change_gamertag {
+            position: static;
+            margin-left: 0;
+            margin-right: auto;
+            font-family: 'Merriweather',serif;
+            background-color: #000;
+            color: #4d4d4d;
+            font-weight: 400;
+            -ms-opacity: 0.9;
+            opacity: 0.9
+        }
+
+        #change_gamertag:hover {
+            -ms-opacity: 1;
+            opacity: 1;
+        color: #fff;
+        }
+
+        #findgroupBTN {
+            background: #3cd934;
+  background-image: -webkit-linear-gradient(top, #3cd934, #4eb82b);
+  background-image: -moz-linear-gradient(top, #3cd934, #4eb82b);
+  background-image: -ms-linear-gradient(top, #3cd934, #4eb82b);
+  background-image: -o-linear-gradient(top, #3cd934, #4eb82b);
+  background-image: linear-gradient(to bottom, #3cd934, #4eb82b);
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+            -ms-border-radius: 28px;
+            border-radius: 28px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 15px 10px 15px;
+  text-decoration: none;
+  width: 150px;
+  height: 60px;
+  position: relative;
+  left: 50%;
+  margin-left: -75px;
+  border: none;
+        }
+
+        .guardianError{
+        border: 3px solid red;
+    }
+
+    #findgroupBTN:hover{
+         background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+    }
+
+</style>
+
+<link type="text/css" rel="stylesheet" href="/css/character-profile.css" />
+
+@if (Model == null || Model.Settings == null || Model.Characters == null)
+{
+    <div class="col-lg-12 center">It appears that something went wrong... Try Again Later.</div>
+}
+else
+{
+<script type="text/javascript">
+    function LoadPreferences() {
+        var guardians = $('#guardiansList').html();
+        $('#guardians-container').html(guardians);
+        $('#guardiansList').remove();
+        $(".characterPlate[data-characterid='@Model.Settings.CharacterId']").addClass("selected-guardian");
+
+        var form = $('#preferencesLoad').html();
+        $('#preferences-container').html(form);
+        $('#preferencesLoad').remove();
+    }
+
+    function SelectGuardian(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        if ($(this).hasClass("selected-guardian")) {
+            $(".characterPlate").removeClass("selected-guardian");
+            $("#guardians-container").removeClass("guardianError");
+            $(".guardian-errorMsg").remove();
+
+        } else {
+            $(".characterPlate").removeClass("selected-guardian");
+            $("#guardians-container").removeClass("guardianError");
+            $(".guardian-errorMsg").remove();
+            $(this).addClass("selected-guardian");
+        }
+    }
+
+    function SubmitCookie(onSuccess) {
+        //Variables
+        var characterId = $(".selected-guardian").data("characterid");
+        var subPlatform = $($(".platform.active").children()[0]).val();
+        var hasMic = $($(".hasmic.active").children()[0]).val();
+        var requireMic = $($(".requiremic.active").children()[0]).val();
+
+        $.ajax({
+            type: "GET",
+            contentType: 'text/html',
+            url: '@Url.Action("CreateCookie", "GroupFinder")',
+            cache: false,
+            data: {
+                MembershipID: '@Model.Settings.MembershipidPassThrough',
+                Platform: '@Model.Settings.PlatformPassThrough',
+                SubPlatform: subPlatform,
+                CharacterID: characterId,
+                HasMic: hasMic,
+                RequireMic: requireMic
+            },
+            success: onSuccess
+        });
+    }
+
+    function CheckValues() {
+        if ($(".selected-guardian").length === 0) {
+            if ($(".guardian-errorMsg").length === 0) {
+                $('#guardians-container').addClass("guardianError");
+                $('#guardians-container').append("<h4 class='center guardian-errorMsg' style='margin-top: 10px; color: red;'>You must choose a Guardian!</h4>");
+            }
+
+            //Do Nothing Error
+        }
+        else {
+
+            //Variables
+            var url = "/services/content-selection?characterID={characterID}&subPlatform={subPlatform}&hasMic={hasMic}&requireMic={requireMic}";
+            var characterId = $(".selected-guardian").data("characterid");
+            var subPlatform = $($(".platform.active").children()[0]).val();
+            var hasMic = $($(".hasmic.active").children()[0]).val();
+            var requireMic = $($(".requiremic.active").children()[0]).val();
+
+            //replace bad values
+            url = url.replace("{characterID}", characterId);
+            url = url.replace("{subPlatform}", subPlatform);
+            url = url.replace("{hasMic}", hasMic);
+            url = url.replace("{requireMic}", requireMic);
+
+            SubmitCookie(function () {
+                window.location = url;
+                $(document).children().animateCssHide("lightSpeedOut");
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        LoadPreferences();
+        $(document).on("touchstart click", ".characterPlate", SelectGuardian);
+        $(document).on("click", "#findgroupBTN", CheckValues);
+        $(document).on("click", ".cookie-setting", SubmitCookie);
+    });
+</script>
+
+<div id="guardiansList" class="hidden">
+    @foreach (CharacterSelection character in Model.Characters)
+    {
+        @(Html.Partial("~/Views/Partials/CharacterProfile.cshtml", character))
+    }
+</div>
+
+<div id="preferencesLoad" class="hidden">
+    @(Html.Partial("~/Views/Partials/Preferences.cshtml", Model.Settings))
+</div>
+
+<a href="/services/group-finder?deleteCookie=true">
+    <div id="change_gamertag">
+        <div class="center hidden-xs hidden-sm" style="width: 100%; height: 100%; background-color: transparent; font-size: 30px; line-height: 65px;">
+            <span class="livicon icon" data-name="chevron-left" data-size="65" data-loop="true" data-c="#4d4d4d" data-hc="#fff"></span>
+            <span>Log Out</span>
+            <span class="livicon icon" style="margin-left: 20px;" data-name="chevron-right" data-size="65" data-loop="true" data-c="#4d4d4d" data-hc="#fff"></span>
+        </div>
+        <div class="center hidden-lg hidden-md" style="width: 100%; height: 100%; background-color: transparent; font-size: 20px; line-height: 45px">
+            <span class="livicon icon" data-name="chevron-left" data-size="45" data-loop="true" data-c="#4d4d4d" data-hc="#fff"></span>
+            <span>Log Out</span>
+            <span class="livicon icon" style="margin-left: 20px;" data-name="chevron-right" data-size="45" data-loop="true" data-c="#4d4d4d" data-hc="#fff"></span>
+        </div>
+    </div>
+</a>
+
+@Html.GetGridHtml(Model.Content, "content", "fanoe")
+}

@@ -1,0 +1,53 @@
+﻿@model Business.Library.Profile
+
+@{
+    Layout = null;
+}
+
+<style type="text/css">
+    .center-profile {
+        display: inline-block;
+        margin: 0 auto;
+    }
+</style>
+
+<div id="profileView" class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <h3 class="">Hey @Model.Username!<span class="btn btn-default" style="width: 100px; margin-left: 10px;" id="editProfile">Edit Profile</span></h3>
+            <p class="">Each Guardian has a profile that looks similar to yours below.</p>
+            <div class="collapse-group">
+                <h4 class="lead text-center" style="font-weight: bold;">Here are some Specifics</h4>
+                <dl id="profile-tour" class="dl-horizontal collapse">
+                    <dt style="margin-top: 5px;">Mic</dt>
+                    <dd>
+                        This Icon:
+                        <span style="display: inline-block; color: white; background-color: black; padding: 2px;" class="glyphicon glyphicon-headphones text-left"></span>
+                        @if (@Model.HasMic != true)
+                        {@Html.Raw(" will show if a player has a Mic, it will be located next to their light level.");
+                        }
+                        else
+                        {@Html.Raw(" shows that you have a Mic.");
+                        }
+                    </dd>
+                    <dt style="margin-top: 5px;">Light Level</dt>
+                    <dd>
+                        Your Light Level: <span class="light-level" style="background-color: black; padding: 2px;">@Model.LightLevel</span>
+                        determines what content is playable based on Destiny's Global Light Level Requirements.
+                    </dd>
+                    <dt style="margin-top: 5px;">Class</dt>
+                    <dd>
+                        Since you are a @Model.Class, the image to the left of your username may look different then other players,
+                        that is because it represents your selected class.
+                    </dd>
+                </dl>
+                <p class="center text-center"><a class="btn btn-default" href="#">View Details &raquo;</a></p>
+            </div>
+            <div>
+                @{Html.RenderAction("_Profile");}
+            </div>
+            <div class="col-lg-9" style="margin-bottom: 10px;">
+            </div>
+        </div>
+    </div>
+</div>

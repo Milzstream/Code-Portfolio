@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGLB-SERVICES", "NGLB-SERVICES\NGLB-SERVICES.csproj", "{C8EEE1E2-3A79-4F8F-98F0-8542E9380844}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BaseJump", "BaseJump\BaseJump.shproj", "{5DC7C0FB-A470-4009-8899-8D3C3B083ABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bungie", "Bungie\Bungie.csproj", "{8D7E5650-5E9B-4651-891B-20E021A7F510}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		BaseJump\BaseJump.projitems*{5dc7c0fb-a470-4009-8899-8d3c3b083abb}*SharedItemsImports = 13
+		BaseJump\BaseJump.projitems*{8d7e5650-5e9b-4651-891b-20e021a7f510}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8EEE1E2-3A79-4F8F-98F0-8542E9380844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8EEE1E2-3A79-4F8F-98F0-8542E9380844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8EEE1E2-3A79-4F8F-98F0-8542E9380844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8EEE1E2-3A79-4F8F-98F0-8542E9380844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7E5650-5E9B-4651-891B-20E021A7F510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7E5650-5E9B-4651-891B-20E021A7F510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7E5650-5E9B-4651-891B-20E021A7F510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7E5650-5E9B-4651-891B-20E021A7F510}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://destinygroupfinder.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = NGLB-SERVICES\\NGLB-SERVICES.csproj
+		SccProjectName1 = NGLB-SERVICES
+		SccLocalPath1 = NGLB-SERVICES
+		SccProjectUniqueName2 = BaseJump\\BaseJump.shproj
+		SccProjectName2 = BaseJump
+		SccLocalPath2 = BaseJump
+		SccProjectUniqueName3 = BaseJump\\BaseJump.projitems
+		SccProjectTopLevelParentUniqueName3 = BaseJump\\BaseJump.shproj
+		SccProjectName3 = BaseJump
+		SccLocalPath3 = BaseJump
+		SccProjectUniqueName4 = Bungie\\Bungie.csproj
+		SccProjectName4 = Bungie
+		SccLocalPath4 = Bungie
+	EndGlobalSection
+EndGlobal

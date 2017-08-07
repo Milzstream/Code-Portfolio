@@ -1,0 +1,25 @@
+﻿@model NGLBCMS.Models.Activity
+
+@{
+    Layout = null;
+}
+
+    <div class="activity col-lg-3 col-md-6 col-sm-12 col-xs-12" data-id="@Model.ActivityID" title='@Model.Description'>
+        <div class="icon-activity" style="background-image: url(@Model.IconPath)"></div>
+        <div class="activity-background" style="background-image: url(@Model.PageBannerImagePath)"></div>
+        <div class="activity-name"><span class="activity-header activity-text">@Model.Name</span></div>
+        <div class="activity-description">
+            <p class="activity-text activity-paragraph">@Model.ActivityType.Name</p>
+            <p class="activity-text activity-paragraph">Max Party Size: @(Model.MaxParty)</p>
+        </div>
+            @if (Model.Modifiers.Count > 0)
+            {
+                <div class="skull-container">
+                    @foreach (var skull in Model.Modifiers)
+                    {
+                        <div class="skull" title="&lt;div&gt;&lt;div class='activity-header activity-text'&gt;@skull.Name&lt;/div&gt;&lt;p class='activity-text activity-paragraph'&gt;@skull.Description&lt;/p&gt;&lt;/div&gt;" style="background-image: url(@skull.IconPath)"></div>
+                    }
+                </div>
+            }
+        <div class="activity-reset text activity-text"></div>
+    </div>

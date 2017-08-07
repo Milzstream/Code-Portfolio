@@ -1,0 +1,263 @@
+﻿@model Business.Library.Profile
+
+@{
+    ViewBag.Title = "Fireteam Finder";
+}
+
+<style type="text/css">
+    img {
+        min-height: 100%;
+        min-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+    #picture {
+        margin-top: 10px;
+        min-width: 200px;
+        min-height: 200px;
+        max-height: 400px;
+        max-width: 400px;
+    }
+
+    h2, h3, h4, h5 {
+        font-family: FontAwesome;
+        font-weight: bold;
+    }
+
+    #group-finder-categories {
+        border-top: 1px solid black;
+        margin-top: 10px;
+    }
+</style>
+
+@section scripts{
+    @Scripts.Render("~/bundles/formvalidation")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#profileEdit, #profileView, #picture').hide();
+            $("#group-finder-categories").hide();
+
+
+            @{
+                if(Model != null)
+                {
+                    @Html.Raw("ShowProfile();")
+                }
+                else
+                {
+                    @Html.Raw("ShowProfileEdit();")
+                }
+             }
+
+            $(document).on("click", "#toggleGMOn", function () {
+                var show = $("#groupmic").children(".help-block.showme")
+                $("#groupmic").children(":hidden").not(".help-block").show("drop", 500);
+                show.show("drop", 500);
+            });
+
+            $(document).on("click", "#toggleGMOff", function () {
+                var show = $("#groupmic").children(".help-block:visible");
+                show.addClass("showme");
+                $("#groupmic").children(":visible").hide("drop", 500);
+            });
+
+            $(document).on("click", "#editProfile", function (e) {
+                e.preventDefault;
+                ShowProfileEdit();
+                return false;
+            });
+        });
+
+        function ShowProfile() {
+            $("#profileView").load('@Url.Action("_ProfileView", "GroupFinder")', function () {
+                $("#picture, #profileEdit").hide("drop", 500, function () {
+                    $("#profileView").show("drop", 500, function () {
+                        $("#picture").show("drop", 500);
+                        $("#group-finder-categories").load('@Url.Action("_GetAvailableContentTypes", "GroupFinder")', function () {
+                            $("#group-finder-categories").show("drop", 500);
+                            $('.row .btn').on('click', function (e) {
+                                e.preventDefault();
+                                var $this = $(this);
+                                var $collapse = $this.closest('.collapse-group').find('.collapse');
+                                $collapse.collapse('toggle');
+                            });
+                        });
+                    });
+                });
+            });
+        };
+
+        function ShowProfileEdit() {
+            var count = $("#profileView, #picture, #group-finder-categories").filter(":visible").length;
+            $("#profileEdit").load('@Url.Action("_ProfileEdit", "GroupFinder")', function () {
+                EnableForm();
+                if (count > 0) {
+                    $("#picture, #profileView, #group-finder-categories").hide("drop", 500, function () {
+                        $('#profileEdit').show('drop', 500, function () {
+                            RevalidateForm();
+                            $('#picture').show('drop', 500);
+
+                            if ($($(".hasmic.active").children()[0]).val() == "false") {
+                                $('#groupmic').children(':visible').hide();
+                            }
+                        });
+                    });
+                } else {
+                    $('#profileEdit').show('drop', 500, function () {
+                        $('#picture').show('drop', 500);
+                        $('#groupmic').children(':visible').hide();
+                    });
+                }
+            });
+        };
+
+        function RevalidateForm() {
+            $('#finderForm')
+                .formValidation('revalidateField', 'username')
+                .formValidation('revalidateField', 'lightlevel')
+                .formValidation('revalidateField', 'platform')
+                .formValidation('revalidateField', 'class')
+                .formValidation('revalidateField', 'mic')
+                .formValidation('revalidateField', 'grpmic');
+        };
+
+        function EnableForm() {
+            $('#finderForm').formValidation({
+                framework: 'bootstrap',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                button: {
+                    selector: '#validateButton',
+                    disabled: 'disabled'
+                },
+                fields: {
+                    username: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please Enter a Username'
+                            }
+                        }
+                    },
+                    lightlevel: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please Enter a Light Level'
+                            },
+                            between: {
+                                min: 1,
+                                max: 340,
+                                message: 'Please Enter a Valid Light Level'
+                            }
+                        }
+                    },
+                    platform: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please Select a Platform'
+                            }
+                        }
+                    },
+                    class: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please Select a Character Class'
+                            }
+                        }
+                    },
+                    mic: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please Select a Mic Option'
+                            }
+                        }
+                    },
+                    grpmic: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please Select Fireteam Mic Option'
+                            }
+                        }
+                    }
+                }
+            }).on('success.form.fv', function (e) {
+                // Prevent form submission
+                e.preventDefault();
+
+                //Create Session Here using Ajax Call
+                //Show Group Finder Groups
+
+                var profile = {};
+
+                if ($($(".hasmic.active").children()[0]).val() == "true") {
+                    profile.HasMic = true;
+
+                    if ($($(".requiremic.active").children()[0]).val() == "true") {
+                        profile.RequireMic = true;
+                    } else {
+                        profile.RequireMic = false;
+                    }
+                } else {
+                    profile.HasMic = false;
+                    profile.RequireMic = false;
+                }
+
+                profile.Username = $("#usernameTB").val();
+                profile.Class = $($(".class.active").children()[0]).val();
+                profile.Platform = $($(".platform.active").children()[0]).val();
+                profile.LightLevel = parseInt($("#lightlevelTB").val());
+
+                COMMON.SendToSession('@Url.Action("_CreateSession", "GroupFinder")', profile, "json", function (data) {
+                    if (data.Success) {
+                        ShowProfile();
+                    }
+                });
+
+                // Then submit the form as usual
+                //fv.defaultSubmit();
+            });
+        }
+    </script>
+}
+
+@section feature{
+    <!-- Breadcrumb Section Start -->
+    <div class="breadcum">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">
+                        <i class="livicon icon3 icon4" data-name="home" data-size="18" data-loop="true" data-c="#3d3d3d" data-hc="#3d3d3d"></i>Home
+                    </a>
+                </li>
+                <li class="hidden-xs">
+                    <i class="livicon icon3" data-name="angle-double-right" data-size="18" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i>
+                    <a href="@Url.Action("Index", "GroupFinder")">Group Finder</a>
+                </li>
+            </ol>
+            <div class="pull-right">
+                <i class="livicon icon3" data-name="users" data-size="20" data-loop="true" data-c="#3d3d3d" data-hc="#3d3d3d"></i> Index
+            </div>
+        </div>
+    </div>
+    <!-- //Breadcrumb Section End -->
+}
+
+<div class="container">
+    <div class="row">
+        <div id="profileView" class="col-lg-9">
+        </div>
+        <div id="profileEdit" class="col-lg-9">
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs hidden-md visible-lg">
+            <img id="picture" src="~/Content/Images/guardian.png" alt="Guardian" />
+        </div>
+    </div>
+    <div id="group-finder-categories" class="row">
+    </div>
+</div>
+

@@ -1,0 +1,93 @@
+﻿@model Business.Library.AdditionalOptions
+
+@{
+    Layout = null;
+}
+
+<style type="text/css">
+    h2, h3, h4, h5 {
+        font-family: FontAwesome;
+        font-weight: bold;
+    }
+
+    .pad-top {
+        margin-top: 15px;
+    }
+
+    .selected {
+        background-color: green;
+        color: white;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+
+    #additionalForm .btn-group .form-control-feedback {
+        top: 0;
+        right: -35px;
+    }
+
+    .btn-default:active,
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:checked,
+    .btn-default.active,
+    .btn-default.active:hover {
+        background-color: green;
+        color: white;
+    }
+
+    #validateButton {
+        width: 100px;
+    }
+
+    .btn-form{
+        padding: 5px;
+    }
+</style>
+
+<h3 class="center">Additional Options</h3>
+<p>These options are defaulted for fresh runs and "Groups of One".</p>
+<form id="additionalForm" class="pad-top" method="post" role="form">
+    <div class="form-group">
+        <label class="control-label" title="Part of an Existing Group?">How Many Guardians Do You Represent?</label>
+        <input type="number" id="playercountTB" class="form-control" name="playercount" value="1" placeholder="Ex. 2" title="Guardians In Your Group" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" title="Want to set a different minimum light level that is higher than the content Requires?">What's the Minimum Light Level Teammates Should Have?</label>
+        <input type="number" id="minimumlightlevelTB" class="form-control" name="minimumlightlevel" value="@ViewBag.MinimumLightLevel" placeholder="Ex. 300" title="Teammate Minimum Light Level" />
+    </div>
+    @if (@Model.CheckPoints.Count > 0)
+    {
+        <div class="form-group">
+            <label class="control-label" title="Need a Specific CheckPoint?">What Checkpoint Are You Looking For?</label>
+            <div class="btn-group" data-toggle="buttons" role="group" required>
+                <label class="btn btn-form btn-default checkpoint active">
+                    <input type="radio" autocomplete="off" name="checkpoint" value="@Model.CheckPoints[0]" checked='checked' />@Model.CheckPoints[0].Substring(4)
+                </label>
+
+                @for (int i = 1; i < @Model.CheckPoints.Count; i++)
+                {
+                    <label class="btn btn-form btn-default checkpoint">
+                        <input type="radio" autocomplete="off" name="checkpoint" value="@Model.CheckPoints[i]" />@Model.CheckPoints[i].Substring(4)
+                    </label>
+                }
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group" style="display: none;">
+            <div class="btn-group" data-toggle="buttons" role="group" required>
+                <label class="btn btn-form btn-default checkpoint active">
+                    <input type="radio" autocomplete="off" name="checkpoint" value="@ViewBag.Content" checked='checked' />@ViewBag.Content
+                </label>
+            </div>
+        </div>
+    }
+    <div class="pad-top">
+        <button type="submit" id="validateButton" class="btn btn-form btn-default">Find a Group</button>
+    </div>
+</form>

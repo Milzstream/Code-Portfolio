@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Select Content!";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#content").load('@Url.Action("_GetAvailableContent", "GroupFinder", new { ContentType = @ViewBag.ContentType })', function () {
+                $("#content").show("drop", 500);
+            });
+        });
+    </script>
+}
+
+<div class="container">
+    <div class="row">
+        <div id="content" style="display: none;" class="col-lg-12">
+        </div>
+    </div>
+</div>
+
+

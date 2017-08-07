@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msvalidate.01" content="D0B9B2D4B3EAB6EC79405A0073A39386" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/fontawesome")
+    @Styles.Render("~/Content/formvalidation")
+    @Styles.Render("~/Content/tabbular")
+    @Styles.Render("~/Content/animate")
+    @Styles.Render("~/Content/css")
+
+    <link rel="icon" href="@Url.Content("~/favicon.ico")" />
+    <meta name="keywords" content="Destiny, Group, Finder, Raids, Fireteam, LFG, Destiny Group Finder" />
+    <meta name="description" content="Find Fireteams for Raids, Strikes and Special Events without posting on a forum by using our Destiny Group Finder." />
+</head>
+<body>
+
+    <!-- Header Start -->
+    <header>
+        <!-- Icon Section Start -->
+        <div class="icon-section">
+            <div class="container">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://www.facebook.com/NoGuardianLeftBehind">
+                            <i class="livicon" data-name="facebook" data-size="18" data-loop="true" data-c="#fff" data-hc="#757b87"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/NoGrdnLftBhnd">
+                            <i class="livicon" data-name="twitter" data-size="18" data-loop="true" data-c="#fff" data-hc="#757b87"></i>
+                        </a>
+                    </li>
+                    <li class="pull-right">
+                        <ul class="list-inline icon-position">
+                            <li>
+                                <a href="mailto:questions@noguardianleftbehind.com"><i class="livicon" data-name="mail" data-size="18" data-loop="true" data-c="#fff" data-hc="#fff"></i></a>
+                                <label class="hidden-xs"><a href="mailto:questions@noguardianleftbehind.com" class="text-white">questions@noguardianleftbehind.com</a></label>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- //Icon Section End -->
+        <!-- Nav bar Start -->
+        <nav class="navbar navbar-default container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
+                    <span>
+                        <i class="livicon" data-name="responsive-menu" data-size="25" data-loop="true" data-c="#757b87" data-hc="#ccc"></i>
+                    </span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/Content/Images/banner_logo.png")" alt="logo" class="logo_position">
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Home")"> Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Features</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="@Url.Action("Finder", "GroupFinder")">Find Group</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> News</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="@Url.Action("Index", "News")">Latest News</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> About</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="@Url.Action("Index", "About")">About Us</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="@Url.Action("Contact", "About")">Contact</a>
+                </ul>
+            </div>
+        </nav>
+        <!-- Nav bar End -->
+    </header>
+    <!-- //Header End -->
+    @RenderSection("feature", false)
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <!-- Footer Section Start -->
+    <footer>
+        <!-- Footer Container Start -->
+        <div class="container footer-text">
+            <!-- About Us Section Start -->
+            <div class="col-sm-6">
+                <h4>About Us</h4>
+                <p>
+                    This website is focused on providing Guardians with a way to find other like-minded individuals that need to fill-out a fireteam.
+                    Raids, Strikes, Special Events and Quests: we plan to include them all. However, instead of having Guardians create a forum post
+                    and wait for replies, we decided to perform the matchmaking for you. When you want to find a group, you select the content (Raid/Strike/Quest/etc),
+                    set the preferences (Light Level/Has Mic/etc), and wait to be matched. As you are matched with other players, you can communicate through a lobby
+                    chat.
+                </p>
+            </div>
+            <!-- //About Us Section End-->
+            <!-- Contact Section Start -->
+            <div class="col-sm-6">
+                <h4>Contact Us</h4>
+                <ul class="list-unstyled">
+                    <li>Based: Grand Rapids, MI</li>
+                    <li>
+                        <i class="livicon icon3" data-name="mail-alt" data-size="20" data-loop="true" data-c="#ccc" data-hc="#ccc"></i> Email:<span class="success">
+                            <a href="mailto:">questions@noguardianleftbehind.com</a>
+                        </span>
+                    </li>
+                </ul>
+                <h4>Follow Us</h4>
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://www.facebook.com/NoGuardianLeftBehind">
+                            <i class="livicon" data-name="facebook" data-size="18" data-loop="true" data-c="#ccc" data-hc="#ccc"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/NoGrdnLftBhnd">
+                            <i class="livicon" data-name="twitter" data-size="18" data-loop="true" data-c="#ccc" data-hc="#ccc"></i>
+                        </a>
+                    </li>
+                </ul>
+                @*<div class="news">
+                        <h4>News letter</h4>
+                        <p>subscribe to our newsletter and stay up to date with the latest news and deals</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="yourmail@mail.com" aria-describedby="basic-addon2">
+                            <a href="#" class="btn btn-primary text-white" role="button">Subscribe</a>
+                        </div>
+                    </div>*@
+            </div>
+            <!-- //Contact Section End -->
+            <!-- Recent post Section Start -->
+            @*<div class="col-sm-4">
+                    <h4>Recent Posts</h4>
+                    <div class="media">
+                        <div class="media-left media-top">
+                            <a href="#">
+                                <img class="media-object" src="images/image_14.jpg" alt="image">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading">
+                                Lorem Ipsum is simply dummy text of the printing and type setting industry dummy.
+                                <br />
+                                <div class="pull-right"><i>John Doe</i></div>
+                            </p>
+                        </div>
+                    </div>
+                </div>*@
+            <!-- //Recent Post Section End -->
+        </div>
+        <!-- Footer Container Section End -->
+    </footer>
+    <div class="copyright">
+        <div class="container">
+            <p>Copyright &copy; No Guardian Left Behind, @DateTime.Now.Year</p>
+        </div>
+    </div>
+
+    <!-- Copy right Section End -->
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top" data-toggle="tooltip" data-placement="left">
+        <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
+    </a>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/livicons")
+    @Scripts.Render("~/bundles/holder")
+    @Scripts.Render("~/bundles/formvalidation")
+    @Scripts.Render("~/bundles/signalR")
+    @Scripts.Render("~/bundles/notify")
+    @Scripts.Render("~/bundles/common")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            document.ontouchmove = function (event) {
+                e.stopPropagation();
+            };
+
+            $(document).on('click tap', 'a', function () {
+                var link = $(this).attr('href');
+                var newWindow = $(this).attr('link');
+
+                if (newWindow != null) {
+                    window.open(newWindow, "_blank");
+                } else if (link != null) {
+                    window.location(link);
+                }
+
+                return false; // prevent anchor click
+            });
+
+            //Ajax Setup to disable caching
+            $.ajaxSetup({ cache: false });
+        });
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-70942322-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

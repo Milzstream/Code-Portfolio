@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    var CreateCookie = function(membership, platform) {
+
+        $.ajax({
+            type: "GET",
+            contentType: 'text/html',
+            url: '@Url.Action("CreateCookie", "GroupFinder")',
+            cache: false,
+            data:{
+                MembershipID: membership,
+                Platform: platform,
+                SubPlatform: 2
+            },
+            success: function (result, status, xhr) {
+                window.location = '/services/character-selection?membershipID=' + membership + '&platform=' + platform;
+                $(document).children().animateCssHide("lightSpeedOut");
+            }
+        });
+
+        return false;
+   }
+</script>
+
+@if (@ViewBag.ReturnedPlayers != null && @ViewBag.ReturnedPlayers.Count > 0)
+{
+    <style type="text/css">
+        .playerContainer {
+            background-color: darkslategrey;
+            border: 1px solid black;
+            color: white;
+            height: 44px;
+            display: inline-block;
+            margin: 5px;
+            line-height: 1 !important;
+            position: relative;
+            overflow-y: hidden;
+            overflow-x: auto;
+        }
+
+        .playerContainer:hover {
+            background-color: lightskyblue;
+            color: black !important;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row clearfix">
+            @foreach (var player in @ViewBag.ReturnedPlayers)
+            {
+                <a class="playerContainer col-lg-5 col-md-5 col-sm-10 col-xs-10 column" href="javascript:;" on4 onclick="CreateCookie('@player.MembershipId', '@player.Platform');" data-membershipid="@player.MembershipId">
+                    <h1 class="hidden-sm hidden-xs" style="position: absolute; left: 48px; display: inline-block; top: 6px; font-size: 28px;">@player.PlayerName</h1>
+                    <h6 class="hidden-lg hidden-md" style="position: absolute; left: 48px; display: inline-block; top: 15px;">@player.PlayerName</h6>
+                    <img class="hidden-xs" width="42" height="42" src="@player.IconImg" alt="@player.Platform" style="display: inline-block; border-right: 1px solid black; position: absolute; left: 0; top: 0; margin: 0;" />
+                    <img class="hidden-lg hidden-md hidden-sm" width="42" height="42" src="@player.IconImg" alt="@player.Platform" style="display: inline-block; border-right: 1px solid black; position: absolute; left: 0; top: 0; margin: 0; margin-top: -20px;" />
+                </a>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-lg-12">
+        <h4 class="text-center">No PSN or Xbox Gamertags found!</h4>
+        <h6 class="text-center">(make sure you have logged into destiny recently to sync your account)</h6>
+    </div>
+}

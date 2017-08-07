@@ -1,0 +1,222 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+@font-face {
+    font-family: Cabin-Regular;
+    src: url('/Content/Pages/font/Cabin-Regular.otf') format('opentype');
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+
+/*About Page Index*/
+#shadeBIO {
+    background: url('/Content/Images/warlock-2.jpg');
+    background-size: cover;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+#yobBIO {
+    background: url('/Content/Images/titan-2.jpg');
+    background-size: cover;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+/* Profiles */
+
+.warlock {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url('/Content/Images/Profile/Warlock.png');
+    background-size: cover;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100%;
+}
+
+.titan {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url('/Content/Images/Profile/Titan.png');
+    background-size: cover;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100%;
+}
+
+.hunter {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url('/Content/Images/Profile/Hunter.png');
+    background-size: cover;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100%;
+}
+
+.center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Content Types */
+.raid {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url('/Content/Images/GroupFinder/raid_icon.png');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 115px;
+    height: 100%;
+}
+
+.strike {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url('/Content/Images/GroupFinder/strike_icon.png');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 115px;
+    height: 100%;
+}
+
+.story {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url('/Content/Images/GroupFinder/story_icon.png');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 115px;
+    height: 100%;
+}
+
+.crucible {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url('/Content/Images/GroupFinder/crucible_icon.png');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 115px;
+    height: 100%;
+}
+
+/* NightFall Class */
+._c_We_Ni_St{
+    background: url('/Content/Images/GroupFinder/nightfall.png');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* NightFall Class */
+._c_Va_He_St{
+    background: url('/Content/Images/GroupFinder/weekly_heroic_strike.png');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Trials of Osiris */
+._c_Tr_of_Os{
+    background: url('/Content/Images/GroupFinder/trials_icon_colour.png');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/* Finder - Groups */
+.finder-option {
+    min-width: 250px;
+    max-width: 25%;
+    height: 150px;
+    color: gold;
+    background-color: darkslategray;
+    border-radius: 15px 15px 15px 15px;
+    margin: 5px;
+    overflow: hidden;
+}
+
+    .finder-option:hover {
+        background-color: #c0caca;
+    }
+
+.finder-option-picture {
+    position: relative;
+    float: right;
+    background-color: transparent;
+    width: auto;
+    height: 100%;
+    min-width: 1px;
+}
+
+.loader {
+    min-width: 250px;
+    min-height: 250px;
+    max-height: 250px;
+    max-width: 250px;
+    background-image: url('/Content/Images/ajax_loader_blue_512.gif');
+    background-size: cover;
+    line-height: 100%;
+    text-align: center;
+}
+
+.light-level {
+    display: inline-block;
+    color: rgba(245, 220, 86, 1);
+}
+
+/* Home Page */
+    #newsfeed {
+        width: 100%;
+        height: 400px;
+        z-index: 0;
+        background: url('/Content/Images/destiny-matchmaking.jpg');
+        background-size: cover;
+        background-color: transparent;
+        background-repeat: no-repeat;
+    }
+
+    #newsfeed-small {
+        width: 100%;
+        height: 200px;
+        z-index: 0;
+        background: url('/Content/Images/destiny-matchmaking.jpg');
+        background-size: cover;
+        background-color: transparent;
+        background-repeat: no-repeat;
+    }

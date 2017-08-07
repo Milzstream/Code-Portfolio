@@ -1,0 +1,113 @@
+﻿@model Business.Library.Profile
+
+@{
+    Layout = null;
+}
+
+<style type="text/css">
+    h2, h3, h4, h5 {
+        font-family: FontAwesome;
+        font-weight: bold;
+    }
+
+    .pad-top {
+        margin-top: 15px;
+    }
+
+    .selected {
+        background-color: green;
+        color: white;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+
+    #finderForm .btn-group .form-control-feedback {
+        top: 0;
+        right: -35px;
+    }
+
+    .btn-default:active,
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:checked,
+    .btn-default.active,
+    .btn-default.active:hover {
+        background-color: green;
+        color: white;
+    }
+
+    #validateButton {
+        width: 100px;
+    }
+</style>
+
+<h3>Fireteam Finder</h3>
+<p>Before we can start matching you with other Guardians tell us a little bit about yourself!</p>
+<form id="finderForm" class="pad-top" method="post" role="form">
+    <div class="form-group">
+        <label class="control-label" title="">What's Your Gamertag?</label>
+        <input type="text" id="usernameTB" class="form-control" name="username" value="@if (@Model != null) { @Model.Username; }" placeholder="Ex. Shadeslayor" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" title="Maximum Possible Light Level">What is Your Max Light Level?</label>
+        <input type="number" id="lightlevelTB" class="form-control" name="lightlevel" value="@if (@Model != null) { @Model.LightLevel; }" placeholder="Ex. 310" title="Maximum Possible Light Level" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" title="">Do You Have a Mic?</label>
+        <div class="btn-group" data-toggle="buttons" role="group" required>
+            <label id="toggleGMOn" class="btn btn-default hasmic @if (@Model != null && @Model.HasMic == true) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="mic" value="true" @if (@Model != null && @Model.HasMic == true) { @Html.Raw("checked='checked'") ; } />Yes
+            </label>
+            <label id="toggleGMOff" class="btn btn-default hasmic @if (@Model != null && @Model.HasMic == false) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="mic" value="false" @if (@Model != null && @Model.HasMic == false) { @Html.Raw("checked='checked'") ; } />No
+            </label>
+        </div>
+    </div>
+    <div id="groupmic" class="form-group">
+        <label class="control-label" title="">Require Other Players Have a Mic?</label>
+        <div class="btn-group" data-toggle="buttons" role="group" required>
+            <label class="btn btn-default requiremic @if (@Model != null && @Model.RequireMic == true) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="grpmic" value="true" @if (@Model != null && @Model.RequireMic == true) { @Html.Raw("checked='checked'") ; } />Yes
+            </label>
+            <label class="btn btn-default requiremic @if (@Model != null && @Model.RequireMic == false) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="grpmic" value="false" @if (@Model != null && @Model.RequireMic == false) { @Html.Raw("checked='checked'") ; } />No
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label" title="">What Platform Are You On?</label>
+        <div class="btn-group" data-toggle="buttons" role="group" required>
+            <label class="btn btn-default platform @if (@Model != null && @Model.Platform == "ps3") { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="platform" value="ps3" @if (@Model != null && @Model.Platform == "ps3") { @Html.Raw("checked='checked'") ; } />PS3
+            </label>
+            <label class="btn btn-default platform @if (@Model != null && @Model.Platform == "ps4") { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="platform" value="ps4" @if (@Model != null && @Model.Platform == "ps4") { @Html.Raw("checked='checked'") ; } />PS4
+            </label>
+            <label class="btn btn-default platform @if (@Model != null && @Model.Platform == "xbox360") { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="platform" value="xbox360" @if (@Model != null && @Model.Platform == "xbox360") { @Html.Raw("checked='checked'") ; } />Xbox 360
+            </label>
+            <label class="btn btn-default platform @if (@Model != null && @Model.Platform == "xboxone") { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="platform" value="xboxone" @if (@Model != null && @Model.Platform == "xboxone") { @Html.Raw("checked='checked'") ; } />Xbox One
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label" title="">What Class Will You Play?</label>
+        <div class="btn-group" data-toggle="buttons" role="group" required>
+            <label class="btn btn-default class @if (@Model != null && @Model.Class == "warlock") { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="class" value="warlock" @if (@Model != null && @Model.Class == "warlock") { @Html.Raw("checked='checked'") ; } />Warlock
+            </label>
+            <label class="btn btn-default class @if (@Model != null && @Model.Class == "titan") { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="class" value="titan" @if (@Model != null && @Model.Class == "titan") { @Html.Raw("checked='checked'") ; } />Titan
+            </label>
+            <label class="btn btn-default class @if (@Model != null && @Model.Class == "hunter") { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="class" value="hunter" @if (@Model != null && @Model.Class == "hunter") { @Html.Raw("checked='checked'") ; } />Hunter
+            </label>
+        </div>
+    </div>
+    <div class="pad-top">
+        <button type="submit" id="validateButton" class="btn btn-default">Next</button>
+    </div>
+</form>

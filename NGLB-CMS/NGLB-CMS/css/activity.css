@@ -1,0 +1,155 @@
+﻿.icon-activity {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75px;
+    height: 75px;
+    background-color: transparent;
+    background: rgba(0, 0, 0, 0.7);
+    -ms-background-size: cover;
+    -webkit-transition: 0.25s ease;
+    -moz-transition: 0.25s ease;
+    -ms-transition: 0.25s ease;
+    -o-transition: 0.25s ease;
+    transition: 0.25s ease;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 3;
+}
+
+.activity {
+    background-color: #363C40;
+    color: white;
+    padding: 5px;
+    height: 150px;
+    -moz-min-width: 320px;
+    -ms-min-width: 320px;
+    -o-min-width: 320px;
+    -webkit-min-width: 320px;
+    min-width: 320px;
+    max-width: 400px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.skull-container {
+    display: inline-block;
+    position: absolute;
+    top: 85px;
+    left: 5px;
+    z-index: 3;
+}
+
+.skull {
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    background: rgba(0, 0, 0, 0.7);
+    -ms-background-size: cover;
+    -webkit-transition: 0.25s ease;
+    -moz-transition: 0.25s ease;
+    -ms-transition: 0.25s ease;
+    -o-transition: 0.25s ease;
+    transition: 0.25s ease;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 3;
+}
+
+.activity-background {
+    -ms-background-size: cover;
+    -webkit-transition: 0.25s ease;
+    -moz-transition: 0.25s ease;
+    -ms-transition: 0.25s ease;
+    -o-transition: 0.25s ease;
+    transition: 0.25s ease;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 150px;
+    width: 100%;
+    z-index: 2;
+}
+
+.activity-name {
+    position: absolute;
+    top: 3px;
+    left: 75px;
+    height: 34px;
+    z-index: 3;
+}
+
+.activity-description {
+    position: absolute;
+    top: 34px;
+    left: 75px;
+    height: 96px;
+    color: white;
+    z-index: 3;
+}
+
+.activity-text {
+    color: white;
+    z-index: 5;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1px;
+}
+
+.activity-paragraph {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    letter-spacing: -0.5px !important;
+    letter-spacing: 0;
+    word-spacing: normal;
+    padding: 5px;
+}
+
+.activity-header {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: -0.5px !important;
+    letter-spacing: 0;
+    word-spacing: normal;
+    padding: 5px;
+}
+
+.activity-reset {
+    font-size: 11px;
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+    height: 20px;
+    z-index: 3;
+    text-align: right;
+}
+
+#resets {
+    height: auto;
+    padding: 10px;
+}
+
+
+#resetHeader {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#resetHeader span {
+    padding: 5px 15px 3px 15px;
+}

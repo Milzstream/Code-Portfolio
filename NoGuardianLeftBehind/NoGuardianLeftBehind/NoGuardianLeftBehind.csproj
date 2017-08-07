@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84A69EE9-8D2F-4C0D-9510-6B1D3F948E79}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NoGuardianLeftBehind</RootNamespace>
+    <AssemblyName>NoGuardianLeftBehind</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.RedisSessionStateProvider">
+      <HintPath>..\packages\Microsoft.Web.RedisSessionStateProvider.1.6.5\lib\net40\Microsoft.Web.RedisSessionStateProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis.StrongName">
+      <HintPath>..\packages\StackExchange.Redis.StrongName.1.0.450\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AjaxOnly.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GroupFinderController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\Finder\Finder.cs" />
+    <Compile Include="Models\ContentModel.cs" />
+    <Compile Include="Models\NewsModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BingSiteAuth.xml" />
+    <Content Include="Content\Images\Articles\first_article.jpg" />
+    <Content Include="Content\Images\banner_logo.png" />
+    <Content Include="Content\Images\Carousel\slide_1.jpg" />
+    <Content Include="Content\Images\Carousel\slide_1_noAddedText.jpg" />
+    <Content Include="Content\Images\Carousel\slide_2.jpg" />
+    <Content Include="Content\Images\Carousel\slide_2_noAddedText.jpg" />
+    <Content Include="Content\Images\Carousel\slide_3.jpg" />
+    <Content Include="Content\Images\Carousel\slide_3_noAddedText.jpg" />
+    <Content Include="Content\Images\Carousel\slide_4.jpg" />
+    <Content Include="Content\Images\contact-page.jpg" />
+    <Content Include="Content\Images\layout_logo.png" />
+    <Content Include="Content\Images\layout_logo_full.png" />
+    <Content Include="Content\Images\Logo.jpg" />
+    <Content Include="Content\Librarys\animate\animate.css" />
+    <Content Include="Content\Librarys\jquery\jquery.circliful.css" />
+    <Content Include="Content\Librarys\owl-carousel\AjaxLoader.gif" />
+    <Content Include="Content\Librarys\owl-carousel\grabbing.png" />
+    <Content Include="Content\Librarys\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\Librarys\owl-carousel\owl.theme.css" />
+    <Content Include="Content\Librarys\owl-carousel\owl.transitions.css" />
+    <Content Include="Content\Librarys\tabbular\tabbular.css" />
+    <Content Include="Content\Pages\custom.css" />
+    <Content Include="Content\Pages\Error\img\night.jpg" />
+    <Content Include="Content\Librarys\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\Librarys\bootstrap\bootstrap.css" />
+    <Content Include="Content\Librarys\font-awesome\font-awesome.css" />
+    <Content Include="Content\Librarys\formvalidation\formValidation.css" />
+    <Content Include="Content\Images\ajax_loader_blue_512.gif" />
+    <Content Include="Content\Images\ghost.png" />
+    <Content Include="Content\Images\GroupFinder\cat-loading.gif" />
+    <Content Include="Content\Images\GroupFinder\class selection.png" />
+    <Content Include="Content\Images\GroupFinder\crucible_icon.png" />
+    <Content Include="Content\Images\GroupFinder\loading.gif" />
+    <Content Include="Content\Images\GroupFinder\nightFall.png" />
+    <Content Include="Content\Images\GroupFinder\raid_icon.png" />
+    <Content Include="Content\Images\GroupFinder\sleeper.png" />
+    <Content Include="Content\Images\GroupFinder\story_icon.png" />
+    <Content Include="Content\Images\GroupFinder\strike_icon.png" />
+    <Content Include="Content\Images\GroupFinder\strike_icon_dark.png" />
+    <Content Include="Content\Images\GroupFinder\trials_icon.png" />
+    <Content Include="Content\Images\GroupFinder\trials_icon_colour.png" />
+    <Content Include="Content\Images\GroupFinder\weekly_heroic_strike.png" />
+    <Content Include="Content\Images\guardian.png" />
+    <Content Include="Content\Images\Profile\Hunter.png" />
+    <Content Include="Content\Images\Profile\Titan.png" />
+    <Content Include="Content\Images\Profile\Warlock.png" />
+    <Content Include="Content\Pages\Error\404.css" />
+    <Content Include="Content\Videos\Ghost Animation .mov" />
+    <Content Include="Content\Librarys\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\Librarys\holder\holder.js" />
+    <Content Include="Scripts\Librarys\jquery\jquery.titlealert.js" />
+    <Content Include="Scripts\Librarys\jquery\jquery.noty.relax.js" />
+    <Content Include="Scripts\Librarys\livicons\livicons-1.4.js" />
+    <Content Include="Scripts\Librarys\livicons\raphael.js" />
+    <Content Include="Scripts\Librarys\owl-carousel\owl.carousel.js" />
+    <Content Include="Scripts\Pages\About\contact.js" />
+    <Content Include="Scripts\Pages\common.js" />
+    <Content Include="Scripts\Librarys\formvalidation\formValidation.js" />
+    <Content Include="Scripts\Librarys\formvalidation\formValidation.popular.js" />
+    <Content Include="Content\Images\Carousel\slide_1-real.jpg" />
+    <Content Include="Content\Images\Logo.gif" />
+    <Content Include="Content\Images\Logo.png" />
+    <Content Include="Content\Images\moonblue.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Servitor.png" />
+    <Content Include="Content\Images\titan-2.jpg" />
+    <Content Include="Content\Images\titan.jpg" />
+    <Content Include="Content\Images\travler-cover.jpg" />
+    <Content Include="Content\Images\warlock-2.jpg" />
+    <Content Include="Content\Images\warlock.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="Content\Librarys\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Pages\Site.css" />
+    <Content Include="Scripts\Librarys\bootstrap\bootcards.js" />
+    <Content Include="Scripts\Librarys\bootstrap\bootstrap.js" />
+    <Content Include="App_Code\Twitter.cshtml" />
+    <None Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
+    <Content Include="Content\Pages\font\Cabin-Bold.otf" />
+    <Content Include="Content\Pages\font\Cabin-BoldItalic.otf" />
+    <Content Include="Content\Pages\font\Cabin-Italic.otf" />
+    <Content Include="Content\Pages\font\Cabin-Medium.otf" />
+    <Content Include="Content\Pages\font\Cabin-MediumItalic.otf" />
+    <Content Include="Content\Pages\font\Cabin-Regular.otf" />
+    <Content Include="Content\Pages\font\Cabin-SemiBold.otf" />
+    <Content Include="Content\Pages\font\Cabin-SemiBoldItalic.otf" />
+    <Content Include="Content\Librarys\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Librarys\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Librarys\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Librarys\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Librarys\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Librarys\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Librarys\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Librarys\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Librarys\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Properties\PublishProfiles\DestinyGroupFinder.pubxml" />
+    <None Include="Scripts\Librarys\jquery\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Librarys\formvalidation\bootstrap.js" />
+    <Content Include="Scripts\Librarys\jquery\jquery-1.10.2.js" />
+    <Content Include="Scripts\Librarys\jquery\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\Librarys\jquery\jquery.noty.packaged.js" />
+    <Content Include="Scripts\Librarys\jquery\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\Librarys\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Pages\Error\404.js" />
+    <Content Include="Scripts\Librarys\bootstrap\respond.js" />
+    <Content Include="Scripts\Librarys\_references.js" />
+    <Content Include="Content\Pages\Error\500.css" />
+    <Content Include="Scripts\Pages\frontend.js" />
+    <Content Include="Scripts\Pages\Home\carousel.js" />
+    <Content Include="sitemap.xml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\GroupFinder\Index.cshtml" />
+    <Content Include="Views\About\Contact.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\GroupFinder\_Profile.cshtml" />
+    <Content Include="Views\GroupFinder\_ProfileEdit.cshtml" />
+    <Content Include="Views\GroupFinder\_ProfileView.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\GroupFinder\_GroupCategories.cshtml" />
+    <Content Include="Views\GroupFinder\_AdditionalOptions.cshtml" />
+    <Content Include="Views\GroupFinder\_Content.cshtml" />
+    <Content Include="Views\GroupFinder\_GetAvailableContentTypes.cshtml" />
+    <Content Include="Views\GroupFinder\ContentSelection.cshtml" />
+    <Content Include="Views\GroupFinder\_GetAvailableContent.cshtml" />
+    <Content Include="Views\GroupFinder\Finder.cshtml" />
+    <Content Include="Web.sitemap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Error\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business2\Business.csproj">
+      <Project>{53c4c374-06b2-468d-9b3b-0bcee72bb3c7}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{5965bff4-26e4-4d5e-a9a4-45730fa61e9b}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49855</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12543/NoGuardianLeftBehind</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://localhost/NoGuardianLeftBehind</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,88 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+
+    dynamic slider = @Model.Content.GetPropertyValue("slider");
+
+    decimal width = !string.IsNullOrEmpty(slider.width.Value.ToString()) ? decimal.Parse(slider.width.Value.ToString()) : 0;
+    decimal height = !string.IsNullOrEmpty(slider.height.Value.ToString()) ? decimal.Parse(slider.height.Value.ToString()) : 0;
+    decimal editorWidth = !string.IsNullOrEmpty(slider.editorWidth.Value.ToString()) ? decimal.Parse(slider.editorWidth.Value.ToString()) : width;
+    decimal editorHeight = !string.IsNullOrEmpty(slider.editorHeight.Value.ToString()) ? decimal.Parse(slider.editorHeight.Value.ToString()) : height;
+
+    var withFactor = width / editorWidth;
+    var heightFactor = height / editorHeight;
+
+}
+
+<div id="rev_slider_202_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="concept1" style="background-color:#000000;padding:0px;">
+    <!-- START REVOLUTION SLIDER 5.1.1RC fullscreen mode -->
+    <div id="rev_slider_202_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.1.1RC">
+        <ul>
+
+            @foreach (var index in slider.slides)
+            {
+                <li data-index="rs-@slider.slides.IndexOf(index)" 
+                    @( !string.IsNullOrEmpty(index.dataTransition.ToString()) ? "data-transition=" + index.dataTransition : "data-transition=\"slidingoverlayhorizontal\"")
+                    @*@( !string.IsNullOrEmpty(index.dataEaseIn.ToString()) ? "data-easein=" + index.dataEaseIn : "data-easein=\"default\"")
+                    @( !string.IsNullOrEmpty(index.dataEaseOut.ToString()) ? "data-easein=" + index.dataEaseOut : "data-easeout=default")*@
+                    @( !string.IsNullOrEmpty(index.dataSlotamount.ToString()) ? "data-slotamount=" + index.dataSlotamount : "data-slotamount=default")
+                    @( !string.IsNullOrEmpty(index.dataDelay.ToString()) ? "data-delay=" + index.dataDelay : "")
+                    @( !string.IsNullOrEmpty(index.dataMasterspeed.ToString()) ? "data-masterspeed=" + index.dataMasterspeed : "data-masterspeed=default")
+                    @( !string.IsNullOrEmpty(index.mediaSrc.ToString()) ? "data-thumb=" + index.mediaSrc : "")
+                    @*@( !string.IsNullOrEmpty(index.dataRotate.ToString()) ? "data-rotate=" + index.dataRotate : "data-rotate=\"0\"")*@
+                    @*@( !string.IsNullOrEmpty(index.dataSavePerformance.ToString()) ? "data-saveperformance=" + index.dataSavePerformance : "data-saveperformance=\"off\"")*@
+                    @( !string.IsNullOrEmpty(index.dataTitle.ToString()) ? "data-title=" + index.dataTitle : "data-title=\"\"")
+                    @*@( !string.IsNullOrEmpty(index.dataDescription.ToString()) ? "data-description=" + index.dataDescription : "data-description=\"\"")*@>
+
+                    <img src="@(!string.IsNullOrEmpty(index.mediaSrc.ToString()) ? index.mediaSrc : "/App_Plugins/Lecoati.uSky.Slider/assets/transparent.png")"
+                         style="background-color: @index.backgroundColor"
+                          data-bgposition="center center"
+                          data-bgfit="cover" data-bgrepeat="no-repeat"
+                          data-bgparallax="5" class="rev-slidebg" data-no-retina>
+
+                    @foreach (var layer in index.layers)
+                        {
+                            var datax = layer.dataX != null && !string.IsNullOrEmpty(layer.dataX.ToString()) ? (decimal.Parse(layer.dataX.ToString()) * withFactor).ToString() : "0";
+                            var datay = layer.dataY != null && !string.IsNullOrEmpty(layer.dataY.ToString()) ? (decimal.Parse(layer.dataY.ToString()) * withFactor).ToString() : "0";
+                            var padding = layer.padding != null && !string.IsNullOrEmpty(layer.padding.ToString()) ? (decimal.Parse(layer.padding.ToString()) * withFactor).ToString() + "px" : "0px";
+                            var fontSize = layer.fontSize != null && !string.IsNullOrEmpty(layer.fontSize.ToString()) ? (decimal.Parse(layer.fontSize.ToString()) * withFactor).ToString() + "px" : "0px";
+                            var lineHeight = layer.fontSize != null && !string.IsNullOrEmpty(layer.fontSize.ToString()) ? (decimal.Parse(layer.fontSize.ToString()) * withFactor).ToString() + "px" : "0px";
+                            var layerwidth = layer.width != null && !string.IsNullOrEmpty(layer.width.ToString()) ? (decimal.Parse(layer.width.ToString()) * withFactor).ToString() + "px" : "0px";
+
+                            var responsive_tabletx = decimal.Parse(datax) > 738 ? (738 / decimal.Parse(datax)) * 670 : (decimal.Parse(datax) / 738) * 670;
+                            var responsive_tablety = decimal.Parse(datay) > 960 ? (960 / decimal.Parse(datay)) * 960 : (decimal.Parse(datay) / 960) * 960;
+                            var responsive_phonex = decimal.Parse(datax) > 440 ? (440 / decimal.Parse(datax)) * 370 : (decimal.Parse(datax) / 440) * 370;
+                            var responsive_phoney = decimal.Parse(datay) > 720 ? (720 / decimal.Parse(datay)) * 720 : (decimal.Parse(datay) / 720) * 720;
+
+                            <div class="tp-caption @layer.animationClass"
+                             @*data-x="[@datax, @datax, @(decimal.Parse(datax) - 369), @(decimal.Parse(datax) - 220)]"
+                             data-y="[@datay, @datay, @(decimal.Parse(datay) - 460), @(decimal.Parse(datay) - 340)]"*@
+                             data-x="[@datax, @datax, @responsive_tabletx, @responsive_phonex]"
+                             data-y="[@datay, @datay, @responsive_tablety, @responsive_phoney]"
+                             data-transform_idle="o:1;" data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:[-100%];y:0;" data-start="1700" data-responsive_offset="on"
+                             data-whitespace="['nowrap', 'nowrap', 'normal', 'normal']"
+                             data-responsive="on" data-basealign="slide"
+                             style="z-index: 4; background-color: @layer.backgroundColor; color: @layer.color; @layer.customCss; padding: @padding; font-size: @fontSize; line-height: @lineHeight">
+
+                            @if (layer.type == "text")
+                            {
+                                @Html.Raw(layer.content)
+                            }
+                            @if (layer.type == "embed")
+                            {
+                                @Html.Raw(layer.content)
+                            }
+                            @if (layer.type == "image")
+                            {
+                                <img src="@Html.Raw(layer.content)" width="@layerwidth">
+                            }
+
+                        </div>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+               

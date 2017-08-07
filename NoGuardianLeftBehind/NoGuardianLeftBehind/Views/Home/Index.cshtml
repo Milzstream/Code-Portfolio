@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "No Guardian Left Behind!";
+}
+
+@Styles.Render("~/Content/carousel")
+<style type="text/css">
+    .padding-0 {
+        padding: 0;
+    }
+</style>
+
+@section feature{
+
+    <!--Carousel Start -->
+    <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item">
+            <img src="@Url.Content("~/Content/Images/Carousel/slide_1.jpg")" alt="Welcome to No Guardian Left Behind!">
+        </div>
+        <div class="item">
+            <a href="@Url.Action("Index", "GroupFinder")">
+                <img src="@Url.Content("~/Content/Images/Carousel/slide_2.jpg")" alt="Kings Fall Available Through Group Finder!">
+            </a>
+        </div>
+        <div class="item">
+            <a href="@Url.Action("Index", "About")">
+                <img src="@Url.Content("~/Content/Images/Carousel/slide_3.jpg")" alt="Help Support Our Site!">
+            </a>
+        </div>
+        <div class="item">
+            <a href="@Url.Action("Index", "News")">
+                <img src="@Url.Content("~/Content/Images/Carousel/slide_4.jpg")" alt="The Bird is the Word!">
+            </a>
+        </div>
+    </div>
+    <!-- //Carousel End -->
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/carousel")
+    @Scripts.Render("~/bundles/home-carousel")
+
+    <script type="application/ld+json">
+        {
+        "@@context" : "http://schema.org",
+        "@@type" : "WebSite",
+        "name" : "No Guardian Left Behind",
+        "alternateName" : "NoGuardianLeftBehind",
+        "url" : "http://www.noguardianleftbehind.com",
+        "sameAs" : [
+        "https://www.facebook.com/NoGuardianLeftBehind",
+        "https://twitter.com/NoGrdnLftBhnd"
+        ]
+        }
+    </script>
+}
+
+
+
+<!-- Service Section Start-->
+<div class="row">
+    <!-- Responsive Section Start -->
+    <div class="text-center">
+        <h3 class="border-primary"><span class="heading_border bg-primary">Helpful Links</span></h3>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="box">
+            <div class="box-icon">
+                <i class="livicon icon" data-name="users" data-size="55" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i>
+            </div>
+            <div class="info">
+                <h3 class="success text-center">Group Finder</h3>
+                <p>Want to find a Fireteam? No Problem, we have you covered! The best part is, we will do the matching for you, no need to post on a forum and wait for people to find you!</p>
+                <div class="text-right primary">
+                    <a href="@Url.Action("Index", "GroupFinder")">Find a Group</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Responsive Section End -->
+    <!-- Easy to Use Section Start -->
+    <div class="col-sm-6 col-md-3">
+        <!-- Box Start -->
+        <div class="box">
+            <div class="box-icon box-icon1">
+                <i class="livicon icon1" data-name="biohazard" data-size="55" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
+            </div>
+            <div class="info">
+                <h3 class="primary text-center">Updates</h3>
+                <p>Want to learn more about our secret evil plans? Maybe you just want to see what changes are happening around here, both can be found in our News Section!</p>
+                <div class="text-right primary">
+                    <a href="@Url.Action("Index", "News")">News</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Easy to Use Section End -->
+    <!-- Clean Design Section Start -->
+    <div class="col-sm-6 col-md-3">
+        <div class="box">
+            <div class="box-icon box-icon2">
+                <i class="livicon icon1" data-name="paper-plane" data-size="55" data-loop="true" data-c="#f89a14" data-hc="#f89a14"></i>
+            </div>
+            <div class="info">
+                <h3 class="warning text-center">Ideas</h3>
+                <p>Want to send us your ideas? That would be awesome! Maybe there is a matchmaking type we didn't think about, or even a whole new service that could be benifical for everyone!</p>
+                <div class="text-right primary">
+                    <a href="@Url.Action("Contact", "About")">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Clean Design Section End -->
+    <!-- 20+ Page Section Start -->
+    <div class="col-sm-6 col-md-3">
+        <div class="box">
+            <div class="box-icon box-icon3">
+                <i class="livicon icon1" data-name="piggybank" data-size="55" data-loop="true" data-c="#FFD43C" data-hc="#FFD43C"></i>
+            </div>
+            <div class="info">
+                <h3 class="yellow text-center">Donate</h3>
+                <p>We are pretty full on blood, and we don't like ads, unless we are running them on other sites! Every donation helps us reach more Like Minded Guardians to get matched with!</p>
+                <div class="text-right primary">
+                    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=elliottquick%40live%2ecom&lc=US&item_name=No%20Guardian%20Left%20Behind&item_number=NGLB%2dDonate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted">Donate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //20+ Page Section End -->
+</div>
+<!-- //Services Section End -->
+ <!-- Layout Section Start -->
+@*<section class="feature-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <div class="layout-image">
+                    <img src="images/layout.png" class="img-responsive" />
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <ul class="list-unstyled pull-right text-right layout-styl">
+                    <li>
+                        <i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> Responsive clean design
+                    </li>
+                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> User friendly </li>
+                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> HTML5 </li>
+                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> CSS3 </li>
+                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> Bootstrap 3.3.4 </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>*@
+<!-- //Layout Section Start -->

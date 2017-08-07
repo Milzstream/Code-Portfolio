@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<style type="text/css">
+    img {
+        z-index: -1;
+        min-height: 100%;
+        min-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+    #ghost {
+        margin-top: 10px;
+        min-width: 200px;
+        min-height: 200px;
+        max-height: 400px;
+        max-width: 400px;
+        margin-bottom: 10px;
+    }
+
+    .user-tag {
+        text-align: right;
+    }
+
+    h2, h3, h4, h5 {
+        font-family: FontAwesome;
+        font-weight: bold;
+    }
+
+    #donate{
+        font-family: FontAwesome;
+        font-weight: bold;
+        background-color: green;
+        color: gold;
+        padding: 10px;
+    }
+
+    #donate:hover,
+    #donate:active,
+    #donate:focus{
+        background-color: gold;
+        color: green;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <h2>About Us</h2>
+            <br />
+            <h4>What's up with the Name?</h4>
+            <p class="bootcards-richtext">
+                Well, back in my first VOG run with Yobtekcor, after defeating Templar and on the way to the exotic chest,
+                I misjudged a jump and died. I heard a yell through my headset: "No Guardian Left Behind", and saw that Yobtekcor had come to
+                rez me. Ever since that first outburst, it has become a constant phrase yelled out when a Guardian is in Distress.
+                One time, Yobtekcor joined a random Heroic VOG run and belted out: "No Guardian Left Behind!" after a fellow Guardian went down
+                and was immediately met with: "IT WAS YOU!" from a Guardian that remembered him rez-ing the entire raid group, forcing them to
+                run all the way through the Abyss without lanterns.
+            </p>
+            <br />
+            <h4>What does this website do?</h4>
+            <p class="bootcards-richtext">
+                This website is focused on providing Guardians with a way to find other like-minded individuals that need to fill-out a fireteam.
+                Raids, Strikes, Special Events and Quests: we plan to include them all. However, instead of having Guardians create a forum post
+                and wait for replies, we decided to perform the matchmaking for you. When you want to find a group, you select the content (Raid/Strike/Quest/etc),
+                set the preferences (Light Level/Has Mic/etc), and wait to be matched. As you are matched with other players, you can communicate through a lobby
+                chat.
+            </p>
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs hidden-md visible-lg">
+            <img id="ghost" src="~/Content/Images/Logo.png" alt="Our Ghost Logo Errm.. Mascot." />
+        </div>
+    </div>
+    <div class="row">
+        <div id="shadeBIO" class="col-lg-6">
+            <h3>Elliott Theodore Quick</h3>
+            <p class="bootcards-richtext">
+                I'm the developer. I love to code, I love Destiny, and I am excited to provide players
+                with an easier way to find fireteams for Raiding and Strikes.
+            </p>
+            <div class="user-tag">
+                <h5>Xbox Live Gamertag</h5>
+                <h5>Shadeslayor</h5>
+
+            </div>
+        </div>
+        <div id="yobBIO" class="col-lg-6">
+            <h3>Ian Bryce Glazier</h3>
+            <p class="bootcards-richtext">
+                I'm a Lover, Fighter, and a Dancer. I'm not the brains or the looks of the two of us,
+                but I did help with the name. I take care of icons and social media for the site.
+            </p>
+            <div class="user-tag">
+                <h5>Xbox Live Gamertag</h5>
+                <h5>Yobtekcor</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-12">
+        <h4>How Can I Help Out?</h4>
+        <p class="bootcards-richtext">
+            We at No Guardian Left Behind are always looking for help! 
+            <ol>
+                <li>Feedback and Suggestions - We Always want to hear your Feedback and Suggestions - @Html.ActionLink("Contact Us", "Contact", "About")</li>
+                <li>Advertisement - Social Media, Word of Mouth, or Just tell Your Friends! The more Guardians using our site, the faster everyone can find a group!</li>
+                <li>Donations - We use Donations to help pay for Hosting and Advertisements! <a id="donate" class="btn btn-default" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=elliottquick%40live%2ecom&lc=US&item_name=No%20Guardian%20Left%20Behind&item_number=NGLB%2dDonate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted">Donate</a></li>
+            </ol>
+        </p>
+    </div>
+    </div>
+</div>

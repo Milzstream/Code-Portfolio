@@ -1,0 +1,17 @@
+﻿@model NGLBCMS.Models.CharacterSelection
+@{ 
+    Layout = null;
+}
+
+<div style="background-image: url(@Model.EmblemBackgroundPath)" class="characterPlate cookie-setting normal on" data-characterid="@Model.CharacterID">
+    <div class="emblem" style="background-image: url(@Model.EmblemPath)"></div>
+    <div class="characterDetails">
+        <span class="characterClass">@Model.Class</span>
+        <span class="raceGender">@Model.Race @Model.Gender</span>
+        <span class="level">@Model.Level</span>
+        <span class="powerLevel light">@Model.LightLevel</span>
+    </div>
+    <div class="characterProgress">
+        <div style="width: 0%;" class="barFill"></div>
+    </div>
+</div>

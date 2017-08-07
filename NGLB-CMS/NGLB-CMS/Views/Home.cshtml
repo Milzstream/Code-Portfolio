@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+}
+
+<script src="rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="/scripts/slider.js"></script>
+@Html.Partial("uSkySlider")
+@CurrentPage.GetGridHtml("content", "fanoe")

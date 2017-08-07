@@ -1,0 +1,88 @@
+﻿@model NGLB_CMS.Business.Containers.ProfilePreferences
+@{ 
+    Layout = null;
+}
+
+<style type="text/css">
+        .pad-top {
+        margin-top: 15px;
+    }
+
+    .finderForm .selected {
+        background-color: green;
+        color: white;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+
+    #finderForm .btn-group .form-control-feedback {
+        top: 0;
+        right: -35px;
+    }
+
+    .btn-default:active,
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:checked,
+    .btn-default.active,
+    .btn-default.active:hover {
+        background-color: green;
+        color: white;
+    }
+
+    .btn-default{
+        z-index: 2;
+    }
+
+    #validateButton {
+        width: 100px;
+    }
+</style>
+
+<form id="finderForm" class="pad-top" method="post" role="form">
+    <div class="form-group">
+        <label class="control-label" title="">Do You Have a Mic?</label>
+        <div class="btn-group" data-toggle="buttons" role="group" required>
+            <label id="toggleGMOn" class="btn btn-default cookie-setting hasmic @if (@Model != null && @Model.HasMic == true) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="mic" value="true" @if (@Model != null && @Model.HasMic == true) { @Html.Raw("checked='checked'")  ; } />Yes
+            </label>
+            <label id="toggleGMOff" class="btn btn-default cookie-setting hasmic @if (@Model != null && @Model.HasMic == false) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="mic" value="false" @if (@Model != null && @Model.HasMic == false) { @Html.Raw("checked='checked'")  ; } />No
+            </label>
+        </div>
+    </div>
+    <div id="groupmic" class="form-group">
+        <label class="control-label" title="">Require Other Players Have a Mic?</label>
+        <div class="btn-group" data-toggle="buttons" role="group" required>
+            <label class="btn btn-default cookie-setting requiremic @if (@Model != null && @Model.RequireMic == true) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="grpmic" value="true" @if (@Model != null && @Model.RequireMic == true) { @Html.Raw("checked='checked'")  ; } />Yes
+            </label>
+            <label class="btn btn-default cookie-setting requiremic @if (@Model != null && @Model.RequireMic == false) { @Html.Raw("active"); }">
+                <input type="radio" autocomplete="off" name="grpmic" value="false" @if (@Model != null && @Model.RequireMic == false) { @Html.Raw("checked='checked'")  ; } />No
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label" title="">What Platform Are You On?</label>
+        <div class="btn-group" data-toggle="buttons" role="group" required>
+            @if(@Model != null && Model.PlatformPassThrough == "psn")
+            {
+                <label class="btn btn-default cookie-setting platform @if (@Model != null && @Model.SubPlatform == 1) { @Html.Raw("active"); }">
+                    <input type="radio" autocomplete="off" name="platform" value="1" @if (@Model != null && @Model.SubPlatform == 1) { @Html.Raw("checked='checked'")  ; } />PS3
+                </label>
+                <label class="btn btn-default cookie-setting platform @if (@Model != null && @Model.SubPlatform == 2) { @Html.Raw("active"); }">
+                    <input type="radio" autocomplete="off" name="platform" value="2" @if (@Model != null && @Model.SubPlatform == 2) { @Html.Raw("checked='checked'")  ; } />PS4
+                </label>
+            } else if(@Model != null && Model.PlatformPassThrough == "xbox") {
+                <label class="btn btn-default cookie-setting platform @if (@Model != null && @Model.SubPlatform == 1) { @Html.Raw("active"); }">
+                    <input type="radio" autocomplete="off" name="platform" value="1" @if (@Model != null && @Model.SubPlatform == 1) { @Html.Raw("checked='checked'")  ; } />Xbox 360
+                </label>
+                <label class="btn btn-default cookie-setting platform @if (@Model != null && @Model.SubPlatform == 2) { @Html.Raw("active"); }">
+                    <input type="radio" autocomplete="off" name="platform" value="2" @if (@Model != null && @Model.SubPlatform == 2) { @Html.Raw("checked='checked'")  ; } />Xbox One
+                </label>
+            }
+        </div>
+    </div>
+</form>

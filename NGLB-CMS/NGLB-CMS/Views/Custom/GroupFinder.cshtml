@@ -1,0 +1,80 @@
+﻿@using Umbraco.Web.Models
+@inherits UmbracoViewPage<RenderModel>
+@{
+    ViewBag.Title = "GroupFinder";
+    Layout = "~/Views/Master.cshtml";
+}
+
+<link rel="stylesheet" href="/css/spinner.css" type="text/css" />
+
+<style type="text/css">
+    pre {
+        white-space: normal;
+        word-wrap: normal;
+        -moz-word-break: normal;
+        -o-word-break: normal;
+        word-break: normal;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        font-family: "Merriweather",serif;
+    }
+</style>
+
+<script type="text/javascript">
+
+    function loader_run() {
+        $("#searchResults").animateCssHide("bounceOutRight", function () {
+            $("#loader").animateCssShow("bounceIn"); });
+    }
+
+
+    $(document).ready(function () {
+        $("#searchResults").removeClass("hidden").hide();
+        $("#loader").removeClass("hidden").hide();
+        $("#searchTB").delayKeyup(2000, loader_run, function () {
+
+                    //Get Current TextField Value
+                    var value = $("#searchTB").val().trim();
+
+                    //if empty do nothing
+                    if (value == null || value.length === 0) {
+                        //Set the results value
+                        $("#loader").animateCssHide("bounceOut", function () {
+                            $("#searchResults").html("");
+                        });
+                    } else {
+                        $.ajax({
+                            type: "GET",
+                            contentType: "text/html",
+                            url: '@Url.Action("SearchPlayers", "GroupFinder")' + '/' + value,
+                            cache: false,
+                            success: function (result) {
+                                if (result.length !== 0) {
+
+                                    //Hide Loader
+                                    $("#loader").animateCssHide("bounceOut", function () {
+
+                                        //Set the results value
+                                        $("#searchResults").html(result);
+                                        $("#searchResults").animateCssShow("bounceInLeft");
+                                    });
+                                }
+                            },
+                            error: function () {
+                                //Set the results value
+                                //Hide Loader
+                                $("#loader").animateCssHide("bounceOut", function () {
+
+                                    //Set the results value
+                                    $("#searchResults").html("<h6>There appears to be an issue with our services. Try again Later.</h6>");
+                                    $("#searchResults").animateCssShow("bounceInLeft");
+                                });
+                            }
+                        });
+                    }
+                });
+    });
+</script>
+    
+@Html.GetGridHtml(Model.Content, "content", "fanoe")
+

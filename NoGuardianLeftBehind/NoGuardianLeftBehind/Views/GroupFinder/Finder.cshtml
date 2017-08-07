@@ -1,0 +1,316 @@
+﻿@model Business.Library.Profile
+
+@{
+    ViewBag.Title = "Finder - " + @ViewBag.Content;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #sidebar-finder {
+        position: relative;
+        left: 0;
+        height: 100%;
+        min-width: 300px;
+        max-width: 100%;
+        background-color: lightslategrey;
+        /*border-bottom-right-radius: 10px;*/
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+    }
+
+    .member {
+        overflow: hidden;
+        margin-top: 10px;
+    }
+
+    .icon-bars-button:active,
+    .icon-bars-button:focus,
+    .icon-bars-button.active,
+    .icon-bars-button {
+        display: inline-block;
+        vertical-align: middle;
+        background-color: lightslategrey;
+        position: absolute;
+        right: 6px;
+        top: 4px;
+    }
+
+        .icon-bars-button:hover,
+        .icon-bars-button.active:hover {
+            background-color: darkslategrey;
+        }
+
+    .icon-bar {
+        margin-bottom: 2px;
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: #cccccc;
+        border-radius: 1px;
+    }
+
+    img {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+    }
+
+    #findguardians {
+        min-width: 200px;
+        max-width: 100%;
+        min-height: 100px;
+        max-height: 400px;
+    }
+</style>
+
+@section scripts{
+    @Scripts.Render("~/bundles/browseralert")
+    @Scripts.Render("~/signalr/hubs")
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        //Additional Options
+        var addOptions = {};
+        addOptions.MinimumLightLevel = @ViewBag.MinimumLightLevel;
+        addOptions.Content = '@ViewBag.Content';
+
+        COMMON.SendToSession('@Url.Action("_AdditionalOptions", "GroupFinder")', addOptions, 'html', function (data) {
+            $("#additonaloptions").html(data);
+            $("#additonaloptions").show("drop", 500);
+            EnableForm();
+        });
+
+
+        $(document).on("click", "#validateButton", function (e) {
+            e.preventDefault();
+            $("#additonaloptions").hide("drop", 500, function () {
+                e.preventDefault();
+                $("#additonaloptions").hide("drop", 500, function () {
+                    $("#ftchat").show("drop", 500);
+                    $("#sidebar-finder").show("drop", 500);
+                    $("#findguardians, #image").show("drop", 500);
+                    StartSignalR($("#playercountTB").val());
+                });
+            });
+        });
+    });
+
+
+    function EnableForm() {
+        $("#additionalForm").formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            button: {
+                selector: '#validateButton',
+                disabled: 'disabled'
+            },
+            fields: {
+                playercount: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please Enter a number'
+                        },
+                        between: {
+                            min: 1,
+                            max: @ViewBag.MaxPlayers -1,
+                            message: 'Please Enter a Valid Number'
+                        }
+                    }
+                },
+                minimumlightlevel: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please Enter a number'
+                        },
+                        between: {
+                            min: @ViewBag.MinimumLightLevel,
+                            max: @Model.LightLevel,
+                            message: 'Please Enter a Valid Number'
+                        }
+                    }
+                },
+                checkpoint: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please Select a CheckPoint'
+                        }
+                    }
+                }
+            }
+        });
+
+        $('#additionalForm')
+            .formValidation('revalidateField', 'playercount')
+            .formValidation('revalidateField', 'checkpoint')
+            .formValidation('revalidateField', 'minimumlightlevel');
+    };
+
+    function StartSignalR(playercount) {
+        var ButtonKeys = { "EnterKey": 13 };
+        $(function() {
+            $(document).keypress(function(e) {
+                if (e.which == ButtonKeys.EnterKey) {
+                    $("#sendBTN").click();
+                    return false;
+                }
+            });
+        });
+
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            var hub = $.connection.finder;
+            // Create a function that the hub can call back to display messages.
+            hub.client.addChatMessage = function (name, message) {
+                // Add the message to the page.
+                $('#chatbox').append('<p><strong>' + htmlEncode(name)
+                    + '</strong>: ' + htmlEncode(message) + '</p>');
+                $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+
+                //Alert Browser
+                if(!$.titleAlert.hasFocus && name != "SYSTEM"){
+                    $.titleAlert("New Message From: " + name);
+                }
+            };
+
+            $(window).on("beforeunload", function() {
+                return "Are You Sure You Want To Leave Group Finder?";
+            });
+
+            hub.client.removeFireteam = function(id){
+                $("#" + id).hide("drop", 500, function(){
+                    $("#" + id).remove();
+                    UpdateFireTeamCount();
+                });
+            };
+
+            hub.client.updateFireTeam = function(id, Username, LightLevel, HasMic, Class){
+
+                var temp = $("<div id='" + id + "' class='row'><div class='member'></div></div>");
+
+                var profile = {};
+                profile.HasMic = HasMic;
+                profile.RequireMic = false;
+                profile.Username = Username;
+                profile.Class = Class;
+                profile.Platform = "";
+                profile.LightLevel = LightLevel;
+
+                temp.hide();
+
+                COMMON.SendToSession('@Url.Action("_ProfileWithPram", "GroupFinder")', profile, 'html', function(result){
+                    temp.children(".member").html(result);
+                    $(".fireteam").append(temp);
+                    $("#" + id).show("drop", 500, function(){
+                        UpdateFireTeamCount();
+                    });
+
+                });
+            };
+
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                var content = $(".checkpoint").children(":checked").val();
+                var minlightlevel = $("#minimumlightlevelTB").val();
+                hub.server.joinGroup('@Model.Username', '@Model.Class', '@Model.Platform', @Model.LightLevel, '@Model.HasMic', '@Model.RequireMic', playercount, content, minlightlevel);
+                $('#sendBTN').click(function () {
+                    // Call the Send method on the hub.
+                    hub.server.sendMessage('@Model.Username', $('#sendMessageTB').val());
+                    // Clear text box and reset focus for next comment.
+                    $('#sendMessageTB').val('').focus();
+                });
+            });
+        });
+    };
+
+    function htmlEncode(value) {
+        var encodedValue = $('<div />').text(value).html();
+        return encodedValue;
+    };
+
+    function UpdateFireTeamCount(){
+        var count = $(".fireteam").children(".row").length;
+        $("#fireteam-title").text("Fireteam (" + count + "/" + @ViewBag.MaxPlayers + ")");
+
+        // Set Document Title
+        var fireteamSize = "(" + count + "/" + '@ViewBag.MaxPlayers' + ")";
+        document.title = fireteamSize + " - " + '@ViewBag.Content';
+
+        //Alert - in case
+        if(!$.titleAlert.hasFocus){
+            $.titleAlert("Fireteam " + fireteamSize);
+        }
+
+        if(count == parseInt(@ViewBag.MaxPlayers))
+        {
+            $("#findguardians:visible").hide("drop", 500, function(){
+                $("#fullgroup:hidden").show("drop", 500);
+            });
+        }
+        else
+        {
+            $("#fullgroup:visible").hide("drop", 500, function(){
+                $("#findguardians:hidden").show("drop", 500);
+            });
+        }
+    };
+
+</script>
+}
+
+@section feature{
+
+
+    <div id="sidebar-finder" style="display: none;" class="col-lg-3">
+        <div class="row">
+            <h3 id="fireteam-title" style="font-weight: bold; display: inline-block; margin-left: 5px; margin-left: 10px;">
+                Fireteam (1/@ViewBag.MaxPlayers)
+            </h3>
+            <button id="collapsebtn" type="button" class="btn btn-default icon-bars-button col-lg-1 push-right" style="width: 50px; height: 50px;" data-toggle="collapse" data-target=".fireteam">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse fireteam">
+        </div>
+    </div>
+
+}
+
+<div class="container">
+    <div class="row">
+        <div id="additonaloptions" style="display: none;" class="col-lg-9">
+        </div>
+        <div id="findguardians" class="col-lg-6 col-md-12" style="display: none; margin-bottom: 1px; margin-left: 20px;">
+            <img src="~/Content/Images/GroupFinder/loading.gif" alt="loading gif" style="width: 100%; height: auto;" />
+        </div>
+        <div id="fullgroup" class="col-lg-6 col-md-12" style="display: none; margin-bottom: 1px; margin-left: 20px;">
+            <h3 class="text-center">Sweet! You Have a Full Group!</h3>
+            <p class="text-center"><span class="glyphicon glyphicon-ok-circle" style="font-size: 100px; color: green;"></span></p>
+            @*<p>Need to Continue the Search? <button type="submit" id="findmoreBTN" class="btn btn-default">Find a Group</button></p>*@
+        </div>
+        <div class="col-lg-3 hidden-sm hidden-xs hidden-md visible-lg" style="margin-left: 20px;">
+            <img id="image" src="~/Content/Images/GroupFinder/strike_icon_dark.png" alt="Strike Logo" style="display: none; min-width: 100px; max-width: 300px; min-height: 200px; max-height: 400px;" />
+        </div>
+    </div>
+    <div class="row">
+        <div id="ftchat" class="col-lg-9" style="display: none;">
+            <h3 class="text-center">Talk to the Group</h3>
+            <div class="form-control text-left" id="chatbox" style="padding: 10px; margin-top: 10px; min-height: 300px; max-height: 500px; overflow-y: auto">
+            </div>
+            <div class="form-group form-inline" style="margin-top: 10px;">
+                <input id="sendMessageTB" type="text" class="form-control" style="min-width: 80%;" placeholder="Ex. Who wants to Send Invites?" />
+                <button type="submit" id="sendBTN" style="margin-top: 5px;" class="btn btn-default">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+

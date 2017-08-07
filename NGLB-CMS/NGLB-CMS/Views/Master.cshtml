@@ -1,0 +1,110 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+	var home = @CurrentPage.Site();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="@CurrentPage.siteDescription">
+
+    <title>@CurrentPage.Name | @CurrentPage._siteTitle</title>
+	
+	<!-- Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Merriweather:400,700,300,900" rel="stylesheet" type="text/css">
+	<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet" property="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/fonts/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/formValidation.css">
+    <!-- REVOLUTION STYLE SHEETS -->
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css">
+    <!-- REVOLUTION LAYERS STYLES -->
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/css/layers.css">
+    <!-- REVOLUTION NAVIGATION STYLES -->
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="/css/oldStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/oldStyle-Fix.css">
+    <link rel="stylesheet" type="text/css" href="/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/css/fanoe.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+      <!-- Javascripts Required -->
+      <script src="/scripts/jquery-1.10.2.min.js"></script>
+      <script src="/scripts/bootstrap.min.js"></script>
+      <script src="/scripts/jquery/jquery.noty.packaged.min.js"></script>
+      <script src="/scripts/jquery/custom.js"></script>
+
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+      <meta http-equiv="Pragma" content="no-cache" />
+      <meta http-equiv="Expires" content="0" />
+
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-8 col-sm-12 col-md-4">
+			<a href="@home.Url">
+            	<div class="brand" style="background-image:url('@(home.SiteLogo)?height=65&width=205&bgcolor=000')"></div>
+			</a>
+          </div>
+          <div class="col-sm-12 col-md-8">
+            <nav>
+			  
+              @{ Html.RenderPartial("MainNavigation"); }
+
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div id="toggle" class="toggle">
+        <a href="#" class="cross"><span></span></a>
+      </div>
+    </header>
+	
+    @RenderBody()
+
+    <footer class="field dark">
+      <div class="container">
+        <div class="row">
+			
+		  @{ Html.RenderPartial("BottomNavigation"); }
+
+        </div>
+      </div>
+    </footer>
+      <!-- Javascript Shared -->
+      <script src="/scripts/livicons/raphael-min.js"></script>
+      <script src="/scripts/livicons/livicons-1.4.min.js"></script>
+      <script src="/scripts/formvalidation/formValidation.js"></script>
+      <script src="/scripts/formvalidation/bootstrap.js"></script>
+      <script src="/scripts/fanoe.js"></script>
+      @*<script type="text/javascript">
+          $(document).ready(function () {
+              document.ontouchmove = function (event) {
+                  event.stopPropagation();
+              };
+          });
+      </script>*@
+  </body>
+</html>

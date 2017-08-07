@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "Content/bootcards-desktop.css",
+    "inputFile": "Content/bootcards-desktop.scss"
+  },
+  {
+    "outputFile": "Content/bootcards-android.css",
+    "inputFile": "Content/bootcards-android.scss"
+  },
+  {
+    "outputFile": "Content/bootcards-ios.css",
+    "inputFile": "Content/bootcards-ios.scss"
+  },
+  {
+    "outputFile": "Content/bootcards-mobile-shared.css",
+    "inputFile": "Content/bootcards-mobile-shared.scss"
+  },
+  {
+    "outputFile": "Content/bootcards.css",
+    "inputFile": "Content/bootcards.scss"
+  }
+]

@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Site News";
+}
+
+<style type="text/css">
+     img {
+        min-height: 100%;
+        min-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+    #ghost {
+        margin-top: 10px;
+        min-width: 300px;
+        min-height: 300px;
+        max-height: 500px;
+        max-width: 500px;
+    }
+
+    .padding{
+        margin-top: 10px;
+    }
+
+    /*** ---------- News Css ---------- ***/
+.blog img{ width:800px; }
+.form-control{
+background-color: #fff;
+
+}
+.comments{
+    padding: 8px;
+    margin-top:10%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.comments >h3{
+	margin-top:5px;
+}
+.comments img{
+	width: 70px;
+	margin:3px;
+	border-radius: 3px;
+
+}
+.news_category label{
+	padding:2px 5px ;
+}
+.news{
+	margin-top:15px;
+	margin-bottom: 15px;
+}
+.btn-success{
+	background-color: #01bc8c;
+}
+.tab-content img{
+	width: 60px;
+	height: 60px;
+}
+.tags .btn-default,
+.tag .btn{
+	background-color: #fff;
+	margin:4px 0px;
+	border-bottom:1px solid #ddd !important;
+}
+.tags{
+	margin-top:5%;
+}
+/*** ---------- //News Css End ---------- ***/
+/*** ---------- News Item Css ---------- ***/
+
+.comnt .text{position: relative;bottom: 81px; left:44%;color: #000;}
+.news_item_image{
+	margin-top: 10px;
+	width: 100%;
+}
+.news_item_text_1{
+	padding: 10px;
+	text-align: justify;
+}
+.img_b2{
+	width: 800px;
+}
+
+.recentnews h6{
+	margin-top: -8px;
+}
+.martop3{
+	margin-top: 3%;
+}
+.thumbnail h3{
+	margin-top: 2px;
+}
+.media-body h6 .date{
+	margin-top: -5px;
+	margin-bottom: 0px;
+}
+.media-body i{
+	margin-bottom: 20px;
+}
+small{
+	margin-top: -5px;
+	margin-bottom: 0px;
+}
+/*** ---------- //News Item Css End ---------- ***/
+</style>
+
+@section feature{
+    <!-- Breadcrumb Section Start -->
+    <div class="breadcum">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">
+                        <i class="livicon icon3 icon4" data-name="home" data-size="18" data-loop="true" data-c="#3d3d3d" data-hc="#3d3d3d"></i>Home
+                    </a>
+                </li>
+                <li class="hidden-xs">
+                    <i class="livicon icon3" data-name="angle-double-right" data-size="18" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i>
+                    <a href="@Url.Action("Index", "News")">Latest News</a>
+                </li>
+            </ol>
+            <div class="pull-right">
+                <i class="livicon icon3" data-name="responsive-menu" data-size="20" data-loop="true" data-c="#3d3d3d" data-hc="#3d3d3d"></i> Latest News
+            </div>
+        </div>
+    </div>
+    <!-- //Breadcrumb Section End -->
+}
+
+                <!-- News1 Section Start -->
+<div class="blog thumbnail">
+    <label>
+        <h3 class="primary news_headings">New News Section!</h3>
+    </label>
+    <img src="@Url.Content("~/Content/Images/Articles/first_article.jpg")" alt="image" class="img-responsive">
+    <div class="news_item_text_1">
+        <p>
+            Hey Guardians! Welcome to the new News Page! This is where you will see exciting information central to the future of this site!<br />
+
+            <br /><b><i>Quick Update:</i></b>
+            <ul>
+                <li> -> This site is still alive! We know that updates and our social media accounts have been less active. Don't Worry, we have just been busy!</li>
+                <li> -> We expect to see some exciting things coming from Bungie! And we plan to stay ahead of the updates!</li>
+            </ul>
+
+        </p>
+        <p class="text-right">
+            <b><i>2/18/2016</i></b><br />
+           <b>Shadeslayor</b>
+        </p>
+    </div>
+</div>
+<!-- //News1 Section End -->
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-lg-9 padding">
+            <p>We are still working on a full-featred updates section!</p>
+           @Twitter.Profile("NoGrdnLftBhnd", "660906759138189312")
+        </div>
+        <div class="col-lg-3 hidden-sm hidden-xs hidden-md visible-lg"><img id="ghost" src="~/Content/Images/ghost.png" alt="Ghost Image" /></div>
+    </div>
+</div>*@
+

@@ -1,0 +1,85 @@
+﻿@inherits UmbracoViewPage<NGLB_CMS.Models.DailyWeeklyFinderContentModel>
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+
+<link href="/css/tooltipster.bundle.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/activity.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/scripts/jquery/tooltipster.bundle.min.js"></script>
+
+<style type="text/css">
+    pre {
+        white-space: normal;
+        word-wrap: normal;
+        -moz-word-break: normal;
+        -o-word-break: normal;
+        word-break: normal;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        font-family: "Merriweather", serif;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#resets").html($("#resets_load").html());
+        $("#resets_load").remove();
+        $("#pve").html($("#pve_load").html());
+        $("#pve_load").remove();
+
+
+        //Countdowns
+        CountDownTimer('@Model.Activities.WeeklyCrucible.ResetTime.ToString()', '@Model.Activities.WeeklyCrucible.ActivityID');
+        CountDownTimer('@Model.Activities.DailyCrucible.ResetTime.ToString()', '@Model.Activities.DailyCrucible.ActivityID');
+        CountDownTimer('@Model.Activities.WeeklyNightfall.ResetTime.ToString()', '@Model.Activities.WeeklyNightfall.ActivityID');
+        CountDownTimer('@Model.Activities.HeroicStrike.ResetTime.ToString()', '@Model.Activities.HeroicStrike.ActivityID');
+        CountDownTimer('@Model.Activities.DailyMission.ResetTime.ToString()', '@Model.Activities.DailyMission.ActivityID');
+
+        //Tooltips
+        $(".activity").tooltipster({ theme: 'tooltipster-borderless', maxWidth: 300 });
+        $(".skull").tooltipster({ theme: 'tooltipster-borderless', contentAsHTML: true, maxWidth: 150 });
+    });
+
+    CountDownTimer = function(dt, id) {
+        var end = new Date(dt);
+        var element = $(".activity[data-id='" + id + "']").find(".activity-reset");
+
+        var second = 1000;
+        var minute = second * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                element.text('EXPIRED!');
+
+                return;
+            }
+            var days = Math.floor(distance / day);
+            var hours = Math.floor((distance % day) / hour);
+            var minutes = Math.floor((distance % hour) / minute);
+            var seconds = Math.floor((distance % minute) / second);
+
+            element.text('Resets in ' + days + 'days ' + hours + 'hrs ' + minutes + 'mins ' + seconds + 'secs');
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    }
+</script>
+
+
+@Html.GetGridHtml(Model.Content, "content", "fanoe")
+
+
+<div id="resets_load">
+    @Html.Partial("~/Views/Partials/Activity.cshtml", Model.Activities.DailyCrucible)
+    @Html.Partial("~/Views/Partials/Activity.cshtml", Model.Activities.WeeklyCrucible)
+    @Html.Partial("~/Views/Partials/Activity.cshtml", Model.Activities.WeeklyNightfall)
+    @Html.Partial("~/Views/Partials/Activity.cshtml", Model.Activities.HeroicStrike)
+    @Html.Partial("~/Views/Partials/Activity.cshtml", Model.Activities.DailyMission)
+</div>

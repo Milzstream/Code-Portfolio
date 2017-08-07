@@ -1,0 +1,24 @@
+﻿
+Umbraco.Sys.registerNamespace("Umbraco.Application");(function($){Umbraco.Application.ClientManager=function(){return{_isDirty:false,_isDebug:false,_mainTree:null,_appActions:null,_historyMgr:null,_rootPath:"/umbraco",_modal:new Array(),historyManager:function(){if(!this._historyMgr){this._historyMgr=new Umbraco.Controls.HistoryManager();}
+return this._historyMgr;},setUmbracoPath:function(strPath){this._debug("setUmbracoPath: "+strPath);this._rootPath=strPath;},mainWindow:function(){return top;},mainTree:function(){if(this._mainTree==null){this._mainTree=top.UmbClientMgr.mainTree();}
+return this._mainTree;},appActions:function(){if(this._appActions==null){if(typeof this.mainWindow().appActions=='undefined'){this._appActions=new Umbraco.Application.Actions();}
+else this._appActions=this.mainWindow().appActions;}
+return this._appActions;},uiKeys:function(){return this.mainWindow().uiKeys;},contentFrameAndSection:function(app,rightFrameUrl){var self=this;self.mainWindow().UmbClientMgr.historyManager().addHistory(app,true);window.setTimeout(function(){self.mainWindow().UmbClientMgr.contentFrame(rightFrameUrl);},200);},contentFrame:function(strLocation){this._debug("contentFrame: "+strLocation);if(strLocation==null||strLocation==""){if(typeof this.mainWindow().right!="undefined"){return this.mainWindow().right;}
+else{return this.mainWindow();}}
+else{if(strLocation.substr(0,1)!=="#"){if(strLocation.substr(0,1)!="/"){strLocation=this._rootPath+"/"+strLocation;}
+else if(strLocation.length>=this._rootPath.length&&strLocation.substr(0,this._rootPath.length)!=this._rootPath){strLocation=this._rootPath+"/"+strLocation;}}
+this._debug("contentFrame: parsed location: "+strLocation);if(!this.mainWindow().UmbClientMgr){window.setTimeout(function(){var self=this;self.mainWindow().location.href=strLocation;},200);}
+else{this.mainWindow().UmbClientMgr.contentFrame(strLocation);}}},reloadContentFrameUrlIfPathLoaded:function(url){var contentFrame;if(typeof this.mainWindow().right!="undefined"){contentFrame=this.mainWindow().right;}
+else{contentFrame=this.mainWindow();}
+var currentPath=contentFrame.location.pathname+(contentFrame.location.search?contentFrame.location.search:"");if(currentPath==url){contentFrame.location.reload();}},openAngularModalWindow:function(options){if(!this.mainWindow().UmbClientMgr){throw"An angular modal window can only be launched when the modal is running within the main Umbraco application";}
+else{this.mainWindow().UmbClientMgr.openAngularModalWindow.apply(this.mainWindow().UmbClientMgr,[options]);}},rootScope:function(){if(!this.mainWindow().UmbClientMgr){throw"An angular modal window can only be launched when the modal is running within the main Umbraco application";}
+else{return this.mainWindow().UmbClientMgr.rootScope();}},reloadLocation:function(){if(this.mainWindow().UmbClientMgr){this.mainWindow().UmbClientMgr.reloadLocation();}},openModalWindow:function(url,name,showHeader,width,height,top,leftOffset,closeTriggers,onCloseCallback){if(window==this.mainWindow()||!this.mainWindow().UmbClientMgr){var m=new Umbraco.Controls.ModalWindow();this._modal.push(m);m.open(url,name,showHeader,width,height,top,leftOffset,closeTriggers,onCloseCallback);}
+else{if(this.mainWindow().UmbClientMgr){this.mainWindow().UmbClientMgr.openModalWindow.apply(this.mainWindow().UmbClientMgr,[url,name,showHeader,width,height,top,leftOffset,closeTriggers,onCloseCallback]);}
+else{return;}}},openModalWindowForContent:function(jQueryElement,name,showHeader,width,height,top,leftOffset,closeTriggers,onCloseCallback){if(window==this.mainWindow()||!this.mainWindow().UmbClientMgr){var m=new Umbraco.Controls.ModalWindow();this._modal.push(m);m.show(jQueryElement,name,showHeader,width,height,top,leftOffset,closeTriggers,onCloseCallback);}
+else{if(this.mainWindow().UmbClientMgr){this.mainWindow().UmbClientMgr.openModalWindowForContent.apply(this.mainWindow().UmbClientMgr,[jQueryElement,name,showHeader,width,height,top,leftOffset,closeTriggers,onCloseCallback]);}
+else{return;}}},closeModalWindow:function(rVal){if(this._modal!=null&&this._modal.length>0){this._modal.pop().close(rVal);}
+else{var mgr=null;if(window.parent==null||window.parent==window){if(window.UmbClientMgr!=null&&window.UmbClientMgr._modal!=null&&window.UmbClientMgr._modal.length>0){mgr=window.UmbClientMgr;}
+else{return;}}
+else if(typeof window.parent.UmbClientMgr!="undefined"){mgr=window.parent.UmbClientMgr;}
+mgr.closeModalWindow.call(mgr,rVal);}},_debug:function(strMsg){if(this._isDebug){Sys.Debug.trace("UmbClientMgr: "+strMsg);}},get_isDirty:function(){return this._isDirty;},set_isDirty:function(value){this._isDirty=value;}};};})(jQuery);var UmbClientMgr=new Umbraco.Application.ClientManager();
+;;;
